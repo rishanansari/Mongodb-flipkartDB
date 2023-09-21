@@ -1,0 +1,419 @@
+flipkart> db.users.find()
+[
+  {
+    _id: ObjectId("649588837ef25cfc573be8ab"),
+    name: 'Vicki Lakin',
+    email: 'Xzavier_Hauck14@hotmail.com',
+    address: 'Estonia',
+    password: 'n95mt3468ZzAIwu'
+  },
+  {
+    _id: ObjectId("649588837ef25cfc573be8ac"),
+    name: 'Lucy Kassulke',
+    email: 'Edgar.Hamill@gmail.com',
+    address: 'Romania',
+    password: 'bbNU7dej6CoFkDRcN'
+  },
+  {
+    _id: ObjectId("649588837ef25cfc573be8ad"),
+    name: "Delores O'Reilly",
+    email: 'Terrance92@hotmail.com',
+    address: 'Uganda',
+    password: 'FkDRcNaJo7rGpLF4='
+  },
+  {
+    _id: ObjectId("649588837ef25cfc573be8ae"),
+    name: 'Brandy Bosco',
+    email: 'Sheldon79@gmail.com',
+    address: 'Brunei Darussalam',
+    password: 'bbNU7dej6CoFkDRcN'
+  },
+  {
+    _id: ObjectId("649588837ef25cfc573be8af"),
+    name: 'Melody Russel',
+    email: 'Kenny_Mills@gmail.com',
+    address: 'Azerbaijan',
+    password: 'n95mt3468ZzAIwu'
+  },
+  {
+    _id: ObjectId("649588837ef25cfc573be8b0"),
+    name: 'Vicki Lindgren',
+    email: 'Emery37@gmail.com',
+    address: 'Saint Lucia',
+    password: 'FkDRcNaJo7rGpLF4='
+  }
+]
+flipkart> db.users.aggregate([ { $project: {_id:0, usersName: "$name", usersEmail:"$email",usersAddress:"$address" } }]);
+[
+  {
+    usersName: 'Vicki Lakin',
+    usersEmail: 'Xzavier_Hauck14@hotmail.com',
+    usersAddress: 'Estonia'
+  },
+  {
+    usersName: 'Lucy Kassulke',
+    usersEmail: 'Edgar.Hamill@gmail.com',
+    usersAddress: 'Romania'
+  },
+  {
+    usersName: "Delores O'Reilly",
+    usersEmail: 'Terrance92@hotmail.com',
+    usersAddress: 'Uganda'
+  },
+  {
+    usersName: 'Brandy Bosco',
+    usersEmail: 'Sheldon79@gmail.com',
+    usersAddress: 'Brunei Darussalam'
+  },
+  {
+    usersName: 'Melody Russel',
+    usersEmail: 'Kenny_Mills@gmail.com',
+    usersAddress: 'Azerbaijan'
+  },
+  {
+    usersName: 'Vicki Lindgren',
+    usersEmail: 'Emery37@gmail.com',
+    usersAddress: 'Saint Lucia'
+  }
+]
+
+Q:2
+flipkart> db.products.find()
+[
+  {
+    _id: ObjectId("649486a62485de7ceb1c7e1c"),
+    product_name: 'Generic Granite Bike',
+    product_category: 'Sports',
+    product_price: '$55'
+  },
+  {
+    _id: ObjectId("649486a62485de7ceb1c7e26"),
+    product_name: 'Oriental Fresh Bacon',
+    product_category: 'Sports',
+    product_price: '$82'
+  },
+  {
+    _id: ObjectId("649486a62485de7ceb1c7e29"),
+    product_name: 'Handmade Wooden Pizza',
+    product_category: 'Furniture',
+    product_price: '$28'
+  },
+  {
+    _id: ObjectId("649486a62485de7ceb1c7e31"),
+    product_name: 'Unbranded Metal Hat',
+    product_category: 'Electronic',
+    product_price: '$11'
+  },
+  {
+    _id: ObjectId("649486a62485de7ceb1c7e34"),
+    product_name: 'Gorgeous Rubber Chair',
+    product_category: 'Furniture',
+    product_price: '$30'
+  }
+]
+flipkart> db.products.aggregate([
+... {$project:{_id:0, product_name:"$product_name", product_category:"$product_category"}}
+... ]);
+[
+  { product_name: 'Generic Granite Bike', product_category: 'Sports' },
+  { product_name: 'Oriental Fresh Bacon', product_category: 'Sports' },
+  {
+    product_name: 'Handmade Wooden Pizza',
+    product_category: 'Furniture'
+  },
+  {
+    product_name: 'Unbranded Metal Hat',
+    product_category: 'Electronic'
+  },
+  {
+    product_name: 'Gorgeous Rubber Chair',
+    product_category: 'Furniture'
+  }
+]
+flipkart>
+
+Q:3
+flipkart> db.orders.find()
+[
+  {
+    _id: ObjectId("649589ea7ef25cfc573be8b5"),
+    user: { name: 'Vicki Lakin', email: 'Xzavier_Hauck14@hotmail.com' },
+    products: [
+      'Generic Granite Bike',
+      'Oriental Fresh Bacon',
+      'Handmade Wooden Pizza'
+    ]
+  },
+  {
+    _id: ObjectId("649589ea7ef25cfc573be8b6"),
+    user: { name: 'Lucy Kassulke', email: 'Edgar.Hamill@gmail.com' },
+    products: [
+      'Gorgeous Rubber Chair',
+      'Unbranded Metal Hat',
+      'Oriental Fresh Bacon'
+    ]
+  },
+  {
+    _id: ObjectId("649589ea7ef25cfc573be8b7"),
+    user: { name: 'Brandy Bosco', email: 'Sheldon79@gmail.com' },
+    products: [
+      'Unbranded Metal Hat',
+      'Generic Granite Bike',
+      'Gorgeous Rubber Chair'
+    ]
+  },
+  {
+    _id: ObjectId("649589ea7ef25cfc573be8b8"),
+    user: { name: "Delores O'Reilly", email: 'Terrance92@hotmail.com' },
+    products: [
+      'Handmade Wooden Pizza',
+      'Unbranded Metal Hat',
+      'Oriental Fresh Bacon'
+    ]
+  },
+  {
+    _id: ObjectId("649589ea7ef25cfc573be8b9"),
+    user: { name: 'Vicki Lindgren', email: 'Emery37@gmail.com' },
+    products: [
+      'Generic Granite Bike',
+      'Unbranded Metal Hat',
+      'Handmade Wooden Pizza'
+    ]
+  }
+]
+flipkart> db.orders.aggregate([
+... {$project:{_id:0, user:"$user.name", products:"$products"}}
+... ]);
+[
+  {
+    user: 'Vicki Lakin',
+    products: [
+      'Generic Granite Bike',
+      'Oriental Fresh Bacon',
+      'Handmade Wooden Pizza'
+    ]
+  },
+  {
+    user: 'Lucy Kassulke',
+    products: [
+      'Gorgeous Rubber Chair',
+      'Unbranded Metal Hat',
+      'Oriental Fresh Bacon'
+    ]
+  },
+  {
+    user: 'Brandy Bosco',
+    products: [
+      'Unbranded Metal Hat',
+      'Generic Granite Bike',
+      'Gorgeous Rubber Chair'
+    ]
+  },
+  {
+    user: "Delores O'Reilly",
+    products: [
+      'Handmade Wooden Pizza',
+      'Unbranded Metal Hat',
+      'Oriental Fresh Bacon'
+    ]
+  },
+  {
+    user: 'Vicki Lindgren',
+    products: [
+      'Generic Granite Bike',
+      'Unbranded Metal Hat',
+      'Handmade Wooden Pizza'
+    ]
+  }
+]
+flipkart>
+
+Q:4
+flipkart> db.reviews.find()
+[
+  {
+    _id: ObjectId("64958a240db22fab03127f6a"),
+    user: { name: 'Vicki Lakin', email: 'Xzavier_Hauck14@hotmail.com' },
+    products: [
+      'Generic Granite Bike',
+      'Oriental Fresh Bacon',
+      'Handmade Wooden Pizza'
+    ],
+    review: 4.5,
+    comment: 'Good products'
+  },
+  {
+    _id: ObjectId("64958a240db22fab03127f6b"),
+    user: { name: 'Lucy Kassulke', email: 'Edgar.Hamill@gmail.com' },
+    products: [
+      'Gorgeous Rubber Chair',
+      'Unbranded Metal Hat',
+      'Oriental Fresh Bacon'
+    ],
+    review: 4.5,
+    comment: 'Every penny worth'
+  },
+  {
+    _id: ObjectId("64958a240db22fab03127f6c"),
+    user: { name: 'Brandy Bosco', email: 'Sheldon79@gmail.com' },
+    products: [
+      'Unbranded Metal Hat',
+      'Generic Granite Bike',
+      'Gorgeous Rubber Chair'
+    ],
+    review: 3.9,
+    comment: 'Nice products'
+  },
+  {
+    _id: ObjectId("64958a240db22fab03127f6d"),
+    user: { name: "Delores O'Reilly", email: 'Terrance92@hotmail.com' },
+    products: [
+      'Handmade Wooden Pizza',
+      'Unbranded Metal Hat',
+      'Oriental Fresh Bacon'
+    ],
+    review: 4.8,
+    comment: 'Awesome products'
+  }
+]
+flipkart> db.reviews.aggregate([
+... {$project:{_id:0, review:"$comment", user:"$user.name", products:"$products"}}
+... ]);
+[
+  {
+    review: 'Good products',
+    user: 'Vicki Lakin',
+    products: [
+      'Generic Granite Bike',
+      'Oriental Fresh Bacon',
+      'Handmade Wooden Pizza'
+    ]
+  },
+  {
+    review: 'Every penny worth',
+    user: 'Lucy Kassulke',
+    products: [
+      'Gorgeous Rubber Chair',
+      'Unbranded Metal Hat',
+      'Oriental Fresh Bacon'
+    ]
+  },
+  {
+    review: 'Nice products',
+    user: 'Brandy Bosco',
+    products: [
+      'Unbranded Metal Hat',
+      'Generic Granite Bike',
+      'Gorgeous Rubber Chair'
+    ]
+  },
+  {
+    review: 'Awesome products',
+    user: "Delores O'Reilly",
+    products: [
+      'Handmade Wooden Pizza',
+      'Unbranded Metal Hat',
+      'Oriental Fresh Bacon'
+    ]
+  }
+]
+flipkart>
+
+Q:5
+flipkart> db.categories.find()
+[
+  {
+    _id: ObjectId("64958ae90db22fab03127f6f"),
+    product_category: 'Electronic'
+  },
+  {
+    _id: ObjectId("64958ae90db22fab03127f70"),
+    product_category: 'Sports'
+  },
+  {
+    _id: ObjectId("64958ae90db22fab03127f71"),
+    product_category: 'Furniture'
+  }
+]
+flipkart> db.categories.aggregate([
+... {$project: {_id:0, product_category:"$product_category"}}
+... ]);
+[
+  { product_category: 'Electronic' },
+  { product_category: 'Sports' },
+  { product_category: 'Furniture' }
+]
+flipkart>
+
+Q:6
+flipkart> db.products.updateOne( {"product_name":"Generic Granite Bike"} ,{$set:{"product_price":"$55"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+flipkart> db.products.find();
+[
+  {
+    _id: ObjectId("649486a62485de7ceb1c7e1c"),
+    product_name: 'Generic Granite Bike',
+    product_category: 'Sports',
+    product_price: '$55'
+  },
+  {
+    _id: ObjectId("649486a62485de7ceb1c7e26"),
+    product_name: 'Oriental Fresh Bacon',
+    product_category: 'Sports',
+    product_price: '$82'
+  },
+  {
+    _id: ObjectId("649486a62485de7ceb1c7e29"),
+    product_name: 'Handmade Wooden Pizza',
+    product_category: 'Furniture',
+    product_price: '$28'
+  },
+  {
+    _id: ObjectId("649486a62485de7ceb1c7e31"),
+    product_name: 'Unbranded Metal Hat',
+    product_category: 'Electronic',
+    product_price: '$11'
+  },
+  {
+    _id: ObjectId("649486a62485de7ceb1c7e34"),
+    product_name: 'Gorgeous Rubber Chair',
+    product_category: 'Furniture',
+    product_price: '$30'
+  }
+]
+
+Q:7
+flipkart> db.reviews.find({_id:ObjectId("64958a240db22fab03127f6e")});
+[
+  {
+    _id: ObjectId("64958a240db22fab03127f6e"),
+    user: { name: 'Vicki Lindgren', email: 'Emery37@gmail.com' },
+    products: [
+      'Generic Granite Bike',
+      'Unbranded Metal Hat',
+      'Handmade Wooden Pizza'
+    ],
+    review: 4.1,
+    comment: 'Average products'
+  }
+]
+flipkart> db.reviews.findOneAndDelete({"review":4.1},{justOne: true});
+{
+  _id: ObjectId("64958a240db22fab03127f6e"),
+  user: { name: 'Vicki Lindgren', email: 'Emery37@gmail.com' },
+  products: [
+    'Generic Granite Bike',
+    'Unbranded Metal Hat',
+    'Handmade Wooden Pizza'
+  ],
+  review: 4.1,
+  comment: 'Average products'
+}
+flipkart>
